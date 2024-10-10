@@ -2,7 +2,7 @@
 
 public class Word {
     private String word; 
-    
+    //setters and constructors 
     public Word(String word) {
         this.word = word;
     }
@@ -13,13 +13,5 @@ public class Word {
     
     public String getWord(){
         return word; 
-    }
-
-    public int compareTo(Word other){
-        return this.word.compareTo(other.word);
-    }
-
-    public String toString(){
-        return "Word: " + word;
     }
 }

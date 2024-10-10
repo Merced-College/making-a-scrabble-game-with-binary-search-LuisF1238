@@ -16,12 +16,13 @@ import java.util.Scanner;
 public class ScrabbleGame {
 
 private static final char[] VOWELS = {'a', 'e', 'i', 'o', 'u'};
+//list that hold words from file
 private List<Word> words = new ArrayList<>();
 
 public ScrabbleGame(String wordFile) throws IOException {
         loadWords(wordFile);
 }
-
+//loads words from file into word list
 private void loadWords(String wordFile) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader(wordFile));       
     String line;
@@ -31,7 +32,7 @@ private void loadWords(String wordFile) throws IOException {
     br.close();
 }
 
-
+//generates 4 random letters
 public char[] generateRandomLetters() {
     Random random = new Random();
     char[] letters = new char[4];
@@ -41,7 +42,7 @@ public char[] generateRandomLetters() {
     return letters;
 }
 
-
+//checks if word is good using a binary search check to compare
 public boolean isWordGood(String wordToSearch) {
     int low = 0;
     int high = words.size() - 1;
@@ -63,8 +64,9 @@ public boolean isWordGood(String wordToSearch) {
     return false;
 }
 
+//game progress of how it prints out methods
 public void play() {
-   
+   //do-while that keeps running untill you say exit
     do {
     char[] randomLetters = generateRandomLetters();
     replaceFourthWithVowel(randomLetters);
@@ -92,13 +94,12 @@ public void play() {
 
     
 }
-
+//method that overrides 4th char generated and replaces with a random vovel
 public void replaceFourthWithVowel(char[] letters) {
     Random random = new Random();
     letters[3] = VOWELS[random.nextInt(VOWELS.length)];  
 }
-
-
+//main where game is initialated
     public static void main(String[] args) {
         try {
             ScrabbleGame game = new ScrabbleGame("CollinsScrabbleWords_2019.txt");
